@@ -1,9 +1,11 @@
+// Packages
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-//const Users = require('./routes/api/Users')
-//const Motives = require('./routes/api/Motives')
 const cors = require('cors')
+
+// API Routes
+const UserRoute = require('./api/UserRoute');
 
 const app = express();
 
@@ -21,8 +23,8 @@ mongoose.connect(mongoURL, { useNewUrlParser: true ,  useUnifiedTopology: true }
 
 // ======================================================================================
 // Use Routes
-//app.use('/api/users', Users);
-//app.use('/api/motives', Motives);
+app.use('/api/users', UserRoute);
+
 
 // ======================================================================================
 // Start Server
