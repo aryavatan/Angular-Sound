@@ -1,0 +1,54 @@
+$primary: rgb(59, 111, 255);
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    display: flex;
+
+    li {
+        background: $primary;
+        padding: 1em;
+        margin-right: 40px;
+        margin-top: 3%;
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+
+        div{
+            background: $primary;
+            text-align:center;
+        
+            h1, p, input, button{
+                margin: auto;
+            }
+        
+            h1, p{
+                color: white;
+            }
+        }
+
+    }
+
+    li:hover{
+
+    }
+
+}
+
+/*div{
+    background: $primary;
+    margin-top: 3%;
+    margin-right: 75%;
+    text-align:center;
+
+    h1, p, input, button{
+        margin: auto;
+    }
+
+    h1, p{
+        color: white;
+    }
+}*/
