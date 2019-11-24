@@ -9,7 +9,15 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
+  // Data binded variables
+  loginEmail:string = '';
+  loginPass:string = '';
+
   ngOnInit() {
+  }
+
+  Login(){
+    alert("Logging In");
   }
 
 }

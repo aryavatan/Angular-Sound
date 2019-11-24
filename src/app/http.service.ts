@@ -3,18 +3,18 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-  getMethod(){
+	getMethod() {
 		return this.http.get('http://localhost:8080/api');
-  }
+	}
 
-  postMethod(postData){
+	postMethod(postData) {
 		return this.http.post('http://localhost:8080/api/create', postData);
 	}
-  
+
 }
