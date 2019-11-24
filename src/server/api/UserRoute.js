@@ -10,4 +10,14 @@ router.get('/', (req, res) => {
     .then(items => res.json(items));
 });
 
+// '/api/users' - POST - Create A New Users
+router.post('/', (req, res) => {
+    const newUser = new User({
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    newUser.save().then(item => res.json(item));
+});
+
 module.exports = router;
