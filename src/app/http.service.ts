@@ -12,6 +12,13 @@ export class HttpService {
 	getAllSongs(){
 		return this.http.get('http://localhost:8080/api/songs');
 	}
+
+	postUser(email, password){
+		let postData = {
+			email: email,
+			password: password
+		}
+	}
 	
 	getMethod() {
 		return this.http.get('http://localhost:8080/api/users');

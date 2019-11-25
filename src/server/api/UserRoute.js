@@ -1,4 +1,6 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+
 const router = express.Router();
 
 // User model
@@ -12,12 +14,23 @@ router.get('/', (req, res) => {
 
 // '/api/users' - POST - Create A New Users
 router.post('/', (req, res) => {
-    const newUser = new User({
-        email: req.body.email,
-        password: req.body.password
-    });
+    bcrypt.hash(req.body.password, 10).then(hash => {
+        
+        const newUser = new User({
+            email: req.body.email,
+            password: hash,
+            status: req.body.status
+        });
+        
+        newUser.save().then(item => res.json(item))
+        .catch(err => {
+            res.status(500).json({error: err});
+        });
 
-    newUser.save().then(item => res.json(item));
+    })
+    
+    
+
 });
 
 module.exports = router;

@@ -1,38 +1,30 @@
-<h1>Login</h1>
+<div class="SignIn">
+    <h1>Login</h1> 
+    <form (submit)="Login(loginForm)" #loginForm="ngForm">
+        <br>
+        <p style="display: inline;">Email: </p>
+        <input type="email" name="email" [(ngModel)]="loginEmail" required email>
+        <br><br>
+        <p style="display: inline;">Password: </p>
+        <input type="password" name="password" [(ngModel)]="loginPass" required>
+        <br><br>
+        <button type="submit">Sign In</button>
+    </form>  
+</div>
 
-<ul>
-    <li>    
-        <div class="SignIn">
-            <br>
-            <h1>Login</h1>
-            <br>
-            <p style="display: inline;">Email: </p>
-            <input type="email" [(ngModel)]="loginEmail">
-            <br><br>
-            <p style="display: inline;">Password: </p>
-            <input type="password" [(ngModel)]="loginPass">
-            <br><br>
-            <button (click)="Login()">Sign In</button>
-            <br><br>
-        </div>
-    </li>
-    <li>
-        <div class="SignUp">
-            <br>
-            <h1>Sign Up</h1>
-            <br>
-            <p style="display: inline;">Email: </p>
-            <input type="email">
-            <br><br>
-            <p style="display: inline;">Password: </p>
-            <input type="password">
-            <br><br>
-            <p style="display: inline;">Confirm Password: </p>
-            <input type="password">
-            <br><br>
-            <button>Sign Up</button>
-            <br><br>
-        </div>
-    </li>
-</ul>
-
+<div class="SignUp">
+    <h1>Sign Up</h1>
+    <form (submit)="SignUp(signupForm)" #signupForm="ngForm">
+        <br>
+        <p style="display: inline;">Email: </p>
+        <input type="email" name="email" [(ngModel)]="signupEmail" required email>
+        <br><br>
+        <p style="display: inline;">Password: </p>
+        <input type="password" name="password1" [(ngModel)]="signupPass1" required>
+        <br><br>
+        <p style="display: inline;">Password: </p>
+        <input type="password" name="password2" [(ngModel)]="signuploginPass2" required>
+        <br><br>
+        <button type="submit">Sign Up</button>
+    </form>
+</div>

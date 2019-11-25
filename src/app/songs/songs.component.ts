@@ -38,15 +38,15 @@ export class SongsComponent implements OnInit {
 		}
 
 		// Get search key and new array for the searched songs
-		let key = this.searchKey.toLowerCase();
+		let key = this.searchKey.toLowerCase().trim();
 		let searchValues = [];
 
 		// For each song that has a keyword match, add to the searched songs array
 		Object.values(this.allSongs).forEach(song => {
-			let title = song.title.toLowerCase();
-			let artist = song.artist.toLowerCase();
-			let album = song.album.toLowerCase();
-			let year = song.year.toLowerCase();
+			let title = song.title.toLowerCase().trim();
+			let artist = song.artist.toLowerCase().trim();
+			let album = song.album.toLowerCase().trim();
+			let year = song.year.toLowerCase().trim();
 
 			if(title.includes(key) || artist.includes(key) || album.includes(key) || year.includes(key)){
 				searchValues.push(song);
