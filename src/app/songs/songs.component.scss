@@ -4,6 +4,15 @@ h1 {
     margin-top: 3%;
 }
 
+.search input {
+	padding: 6px;
+	border: none;
+	font-size: 17px;
+	outline-style: dotted;
+	outline-color: $primary;
+	margin-left: 1%;
+}
+
 ul {
 	list-style-type: none;
     margin: 0;
@@ -15,8 +24,8 @@ ul {
         background: rgb(238, 238, 238);
         padding: 1em;
         margin-right: 10px;
-        width: 40%;
-        height: 100px;
+        width: auto;
+        height: auto;
         margin-bottom: 1em;
         display: flex;
         flex-direction: column;

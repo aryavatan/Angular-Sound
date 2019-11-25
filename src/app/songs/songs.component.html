@@ -1,10 +1,18 @@
 <h1>Songs</h1>
 
-<ul *ngIf="songs">
-    <li *ngFor="let song of songs">
-        <p><strong>Title: </strong>{{song.title}}</p>
-        <p><strong>Artist: </strong>{{song.artist}}</p>
-        <p><strong>Album: </strong>{{song.album}}</p>
-        <p><strong>Year: </strong>{{song.year}}</p>
-    </li>
-</ul>
+<div class="search">
+    <strong>Search: </strong>
+    <input id="lol" type="text" placeholder="Search.."  [(ngModel)]="searchKey" (keyup)="SearchKeyChanged()">
+    <br><br>
+</div>
+
+<div class="songs">
+    <ul *ngIf="songs">
+        <li *ngFor="let song of songs">
+            <p><strong>Title: </strong>{{song.title}}</p>
+            <p><strong>Artist: </strong>{{song.artist}}</p>
+            <p><strong>Album: </strong>{{song.album}}</p>
+            <p><strong>Year: </strong>{{song.year}}</p>
+        </li>   
+    </ul>
+</div>
