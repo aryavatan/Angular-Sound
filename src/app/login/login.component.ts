@@ -19,16 +19,24 @@ export class LoginComponent implements OnInit {
 	}
 
 	Login(form: NgForm) {
-		// This gets all users in DB, which is not good
-		// We want to get by specific username and then compare password
-		this.http.getMethod().subscribe(data => {
-			console.log("Get All Items Request Received");
-			console.log(data);
+		if(form.invalid){
+			return;
+		}
+
+		// Dont forget to do some validation on these
+		let email = form.value.email;
+		let password = form.value.password;
+
+		this.http.loginUser(email, password).subscribe(response => {
+			console.log(response);
 		});
-		console.log(form.value);
 	}
 
 	SignUp(form: NgForm){
+		if(form.invalid){
+			return;
+		}
+
 		let email = form.value.email;
 		let pass1 = form.value.password1;
 		let pass2 = form.value.password2;
@@ -47,7 +55,11 @@ export class LoginComponent implements OnInit {
 			return;
 		}
 
-		
+		this.http.postUser(email, pass1).subscribe(data => {
+			console.log('User Saved');
+			console.log(data);
+		});
+
 	}
 
 }
