@@ -3,4 +3,4 @@
 <strong>Music For Everybody</strong>
 <p>Angular Sound aims to be the #1 music review site in the world!</p>
 <br><br>
-<a class="button" href="#" routerLink="/login">Login</a>
+<a *ngIf="!userIsAuthenticated" class="button" href="#" routerLink="/login">Login</a>

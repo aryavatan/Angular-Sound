@@ -6,7 +6,8 @@
         <li><a href="#" routerLink="/">Home</a></li>
         <li><a href="#" routerLink="/songs">Songs</a></li>
         <li><a href="#" routerLink="/reviews">Reviews</a></li>
-        <li><a href="#" routerLink="/login">Login</a></li>
+        <li *ngIf="!userIsAuthenticated"><a href="#" routerLink="/login">Login</a></li>
+        <li *ngIf="userIsAuthenticated"><a (click)="Logout()">Logout</a></li>
       </ul>
     </nav>
   </div>
