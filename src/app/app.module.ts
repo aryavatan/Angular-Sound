@@ -8,10 +8,11 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { LoginComponent } from './login/login.component';
 import { SongsComponent } from './songs/songs.component';
 
-import {HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 
 import { from } from 'rxjs';
+import { AuthenticationInterceptor } from 'src/server/authentication/Authentication-Interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { from } from 'rxjs';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

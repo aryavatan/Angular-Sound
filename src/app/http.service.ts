@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
 
+	private token: String;
 	constructor(private http: HttpClient) { }
 
 	getAllSongs(){
@@ -27,7 +28,15 @@ export class HttpService {
 			email: email,
 			password: password
 		};
-		return this.http.post('http://localhost:8080/api/users/login', postData);
+		
+		return this.http.post<{token: String}>("http://localhost:8080/api/users/login", postData)
+		.subscribe(response => {
+			this.token = response.token;
+		});
+	}
+
+	getToken(){
+		return this.token;
 	}
 	
 	getMethod() {

@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit {
 		let email = form.value.email;
 		let password = form.value.password;
 
-		this.http.loginUser(email, password).subscribe(response => {
-			console.log(response);
-		});
+		console.log(this.http.loginUser(email, password));
 	}
 
 	SignUp(form: NgForm){
