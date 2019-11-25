@@ -10,7 +10,7 @@ export class HttpService {
 	constructor(private http: HttpClient) { }
 
 	getMethod() {
-		return this.http.get('http://localhost:8080/api');
+		return this.http.get('http://localhost:8080/api/users');
 	}
 
 	postMethod(postData) {
