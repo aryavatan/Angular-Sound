@@ -11,7 +11,7 @@
 
 <div>
     <h2>Your Review</h2>
-    <form id="my_form" (submit)="PostReview(signupForm)" #signupForm="ngForm">
+    <form (submit)="PostReview(reviewForm)" #reviewForm="ngForm">
         <strong>Rating</strong><br>
         <select  name="rating" [(ngModel)]="rating">
             <option value="1">1</option>

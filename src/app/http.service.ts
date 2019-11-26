@@ -38,6 +38,17 @@ export class HttpService {
 		return this.http.post('http://localhost:8080/api/reviews', postData);
 	}
 
+	postSong(title, artist, album, year){
+		let postData = {
+			title: title,
+			artist: artist,
+			album: album,
+			year: year
+		};
+
+		return this.http.post('http://localhost:8080/api/songs', postData);
+	}
+
 	postUser(email, password){
 		const postData = {
 			email: email,

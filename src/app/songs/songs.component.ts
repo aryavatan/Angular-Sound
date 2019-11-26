@@ -73,9 +73,9 @@ export class SongsComponent implements OnInit {
 	private authentication(){
 		this.userIsAuthenticated = this.http.getIsAuth();
 		this.authListenerSubs = this.http
-			.getAuthStatusListener()
-			.subscribe(isAuthenticated => {
-				this.userIsAuthenticated = isAuthenticated;
-			});
+		.getAuthStatusListener()
+		.subscribe(isAuthenticated => {
+			this.userIsAuthenticated = isAuthenticated;
+		});
 	}
 }

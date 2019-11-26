@@ -1,1 +1,20 @@
-<p>add-song works!</p>
+<h1>Add a Song</h1>
+<form (submit)="PostSong(songForm)" #songForm="ngForm">
+    <strong>Track Title: </strong>
+    <input type="text" name="title" [(ngModel)]="title">
+    <br><br>
+
+    <strong>Artist(s): </strong>
+    <input type="text" name="artist" [(ngModel)]="artist">
+    <br><br>
+
+    <strong>Album: </strong>
+    <input type="text" name="album" [(ngModel)]="album">
+    <br><br>
+
+    <strong>Year: </strong>
+    <input type="number" name="year" [(ngModel)]="year" max="2019" min="1950">
+    <br><br>
+
+    <button type="submit">Add Song</button>
+</form>
