@@ -31,8 +31,9 @@ export class AddReviewComponent implements OnInit {
 			console.log(data);
 		});
 
-		this.router.navigate(['/reviews']);
-		window.location.reload();
+		this.router.navigate(['/reviews']).then(() => {
+			window.location.reload();
+		});
 	}
 
 }
