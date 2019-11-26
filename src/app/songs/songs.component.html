@@ -1,5 +1,10 @@
 <h1>Songs</h1>
 
+<div *ngIf="userIsAuthenticated">
+    <a  class="button" href="#" routerLink="/addsong">Add Song</a>
+    <br><br>
+</div>
+
 <div class="search">
     <strong>Search: </strong>
     <input type="text" placeholder="Search.."  [(ngModel)]="searchKey" (keyup)="SearchKeyChanged()">

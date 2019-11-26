@@ -6,13 +6,15 @@ import { LoginComponent } from './login/login.component';
 import { SongsComponent } from './songs/songs.component';
 import { AuthenticationGuard } from 'src/server/authentication/Authentication-Guard';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { AddSongComponent } from './add-song/add-song.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'reviews', component: ReviewsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'songs', component: SongsComponent},
-  { path: 'addreview', component: AddReviewComponent, canActivate: [AuthenticationGuard]}
+  { path: 'addreview', component: AddReviewComponent, canActivate: [AuthenticationGuard]},
+  { path: 'addsong', component: AddSongComponent, canActivate: [AuthenticationGuard]}
 ];
 
 @NgModule({

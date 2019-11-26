@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-songs',
@@ -8,6 +9,10 @@ import { Router } from '@angular/router';
 	styleUrls: ['./songs.component.scss']
 })
 export class SongsComponent implements OnInit {
+
+	// User Authentication Variables
+	userIsAuthenticated = false;
+	private authListenerSubs: Subscription;
 
 	// For storing all records in the database
 	allSongs: Object;
@@ -19,6 +24,7 @@ export class SongsComponent implements OnInit {
 	constructor(private http: HttpService, private router: Router) { }
 
 	ngOnInit() {
+		this.authentication();
 		this.getSongs();
 	}
 
@@ -62,5 +68,14 @@ export class SongsComponent implements OnInit {
 
 		// Set the displayed songs to the searched songs
 		this.songs = searchValues;
+	}
+
+	private authentication(){
+		this.userIsAuthenticated = this.http.getIsAuth();
+		this.authListenerSubs = this.http
+			.getAuthStatusListener()
+			.subscribe(isAuthenticated => {
+				this.userIsAuthenticated = isAuthenticated;
+			});
 	}
 }
