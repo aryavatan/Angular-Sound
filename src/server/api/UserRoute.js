@@ -15,6 +15,11 @@ router.get('/', (req, res) => {
 
 // '/api/users' - POST - Create A New Users
 router.post('/', (req, res) => {
+    // Validate email
+    if(!validateEmail(req.body.email)){
+        return res.status(400).json({message: "Invalid Email"});
+    }
+
     bcrypt.hash(req.body.password, 10).then(hash => {
         
         const newUser = new User({
@@ -34,6 +39,11 @@ router.post('/', (req, res) => {
 // '/api/users/login' - POST - Login User
 router.post('/login', (req, res) => {
     let fetchedUser;
+
+    // Validate email
+    if(!validateEmail(req.body.email)){
+        return res.status(400).json({message: "Invalid Email"});
+    }
 
     // Check for email address in db
     User.findOne({email: req.body.email})
@@ -73,5 +83,20 @@ router.post('/login', (req, res) => {
         res.status(500).json({error: err});
     });
 });
+
+function validateEmail(email) {
+    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    
+    // If email does not contain illegal characters, it is valid therefore return true
+    // Else it is invalid and return false
+    if(email.includes('*')){
+        return false;
+    }
+    else if (regExp.test(email)) {
+        return true; // Return as valid email
+    } 
+
+    return false;
+}
 
 module.exports = router;
