@@ -56,6 +56,12 @@ router.post('/login', (req, res) => {
                 message: 'User Authentication Failed'
             });
         }
+
+        // Check if user is deactivated
+        if(user.status == 'deactivated'){
+            return res.json({error: "deactivated"});
+        }
+
         fetchedUser = user;
 
         // Else user exists, check password

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 			return;
 		}
 
-		console.log(this.http.loginUser(email, password));
+		this.http.loginUser(email, password);
 	}
 
 	SignUp(form: NgForm) {

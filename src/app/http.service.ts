@@ -46,8 +46,13 @@ export class HttpService {
 			password: password
 		};
 		
-		return this.http.post<{token: String}>("http://localhost:8080/api/users/login", postData)
+		return this.http.post<{token: String, error: String}>("http://localhost:8080/api/users/login", postData)
 		.subscribe(response => {
+			if(response.error == 'deactivated'){
+				console.log('User is deactivated');
+				this.router.navigate(['/']);
+				alert("This account is marked as deactivated, please contact a site administrator.");	
+				return;
 			this.token = response.token;
 			this.isAuthenticated = true;
 			this.authStatusListener.next(true);
