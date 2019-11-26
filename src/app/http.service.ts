@@ -53,6 +53,7 @@ export class HttpService {
 				this.router.navigate(['/']);
 				alert("This account is marked as deactivated, please contact a site administrator.");	
 				return;
+			}
 			this.token = response.token;
 			this.isAuthenticated = true;
 			this.authStatusListener.next(true);
