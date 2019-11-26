@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-reviews',
@@ -13,9 +14,14 @@ export class ReviewsComponent implements OnInit {
 	song: Object;  // Storing the song object 
 	averageRating: number = 0;  // Storing the average rating of the song
 
+	userIsAuthenticated = false;
+	private authListenerSubs: Subscription;
+
 	constructor(private http: HttpService) { }
 
 	ngOnInit() {
+		this.authentication()  // Check user authentication
+
 		// Get song id
 		this.songId = localStorage.getItem('songId');
 
@@ -40,6 +46,15 @@ export class ReviewsComponent implements OnInit {
 			this.averageRating += review.rating;
 		});
 		this.averageRating = this.averageRating / count;
+	}
+
+	private authentication(){
+		this.userIsAuthenticated = this.http.getIsAuth();
+		this.authListenerSubs = this.http
+			.getAuthStatusListener()
+			.subscribe(isAuthenticated => {
+				this.userIsAuthenticated = isAuthenticated;
+			});
 	}
 
 

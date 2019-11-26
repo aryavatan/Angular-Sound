@@ -16,6 +16,11 @@
     <p><strong>Number of Reviews: </strong>{{reviews.length}}</p>
     <p><strong>Average Rating: </strong>{{averageRating}}</p>    
 
+    <br>
+    
+    <a *ngIf="userIsAuthenticated" class="button" href="#" routerLink="/addreview">Add Review</a>
+    
+    
     <br><br>
 
     <ul *ngIf="reviews">

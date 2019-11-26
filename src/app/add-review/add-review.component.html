@@ -1,0 +1,33 @@
+<h1>Add Review</h1>
+
+<div class="songInfo" *ngIf="song">
+    <p><strong>Title: </strong>{{song.title}}</p>
+    <p><strong>Artist: </strong>{{song.artist}}</p>
+    <p><strong>Album: </strong>{{song.album}}</p>
+    <p><strong>Year: </strong>{{song.year}}</p> 
+</div>
+
+<br>
+
+<div>
+    <h2>Your Review</h2>
+    <form id="my_form" (submit)="PostReview(signupForm)" #signupForm="ngForm">
+        <strong>Rating: </strong>
+        <select style="display: inline;" name="rating" [(ngModel)]="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select> 
+
+        <br>
+
+        <p><Strong>Review: </Strong></p>
+        <textarea name="review" [(ngModel)]="review" required></textarea>
+
+        <br>
+        <button type="submit">Post Review</button>
+    </form>
+
+</div>

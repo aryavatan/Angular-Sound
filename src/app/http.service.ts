@@ -27,6 +27,17 @@ export class HttpService {
 		return this.http.get('http://localhost:8080/api/reviews/' + songId);
 	}
 
+	postReview(songId, user, rating, review){
+		let postData = {
+			songId: songId,
+			user: user,
+			rating: rating,
+			review: review
+		};
+
+		return this.http.post('http://localhost:8080/api/reviews', postData);
+	}
+
 	postUser(email, password){
 		const postData = {
 			email: email,
@@ -65,7 +76,7 @@ export class HttpService {
 			this.token = response.token;
 			this.isAuthenticated = true;
 			this.authStatusListener.next(true);
-			this.saveAuthData(this.token);
+			this.saveAuthData(this.token, postData.email);
 			this.router.navigate(['/']);
 		});
 	}
@@ -82,12 +93,14 @@ export class HttpService {
 		this.router.navigate(['/']);
 	}
 
-	private saveAuthData(token){
+	private saveAuthData(token, user){
 		localStorage.setItem('token', token);
+		localStorage.setItem('user', user);
 	}
 
 	private clearAuthData(){
 		localStorage.removeItem('token');
+		localStorage.removeItem('user');
 	}
 
 	private getAuthData(){

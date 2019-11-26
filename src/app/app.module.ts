@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 
 import { from } from 'rxjs';
 import { AuthenticationInterceptor } from 'src/server/authentication/Authentication-Interceptor';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthenticationInterceptor } from 'src/server/authentication/Authenticat
     ReviewsComponent,
     LoginComponent,
     SongsComponent,
+    AddReviewComponent,
   ],
   imports: [
     BrowserModule,
