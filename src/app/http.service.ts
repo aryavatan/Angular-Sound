@@ -27,7 +27,19 @@ export class HttpService {
 
 		return this.http.post('http://localhost:8080/api/users', postData);
 	}
+	
+	getMethod() {
+		return this.http.get('http://localhost:8080/api/users');
+	}
 
+	getAuthStatusListener(){
+		return this.authStatusListener.asObservable();
+	}
+
+	getIsAuth(){
+		return this.isAuthenticated;
+	}
+	
 	loginUser(email, password){
 		const postData = {
 			email: email,
@@ -39,6 +51,7 @@ export class HttpService {
 			this.token = response.token;
 			this.isAuthenticated = true;
 			this.authStatusListener.next(true);
+			this.saveAuthData(this.token);
 			this.router.navigate(['/']);
 		});
 	}
@@ -47,23 +60,35 @@ export class HttpService {
 		return this.token;
 	}
 
-	getAuthStatusListener(){
-		return this.authStatusListener.asObservable();
-	}
-
-	getIsAuth(){
-		return this.isAuthenticated;
-	}
-	
-	getMethod() {
-		return this.http.get('http://localhost:8080/api/users');
-	}
-
 	Logout() {
 		this.token = null;
 		this.isAuthenticated = false;
 		this.authStatusListener.next(false);
+		this.clearAuthData();
 		this.router.navigate(['/']);
+	}
+
+	private saveAuthData(token){
+		localStorage.setItem('token', token);
+	}
+
+	private clearAuthData(){
+		localStorage.removeItem('token');
+	}
+
+	private getAuthData(){
+		const token = localStorage.getItem('token');
+		if(!token){
+			return;
+		}
+		return {token: token}
+	}
+
+	autoAuthUser(){
+		const authInfo = this.getAuthData();
+		this.token = authInfo.token;
+		this.isAuthenticated = true;
+		this.authStatusListener.next(true);
 	}
 
 }
