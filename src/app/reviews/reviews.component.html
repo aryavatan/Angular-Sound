@@ -1,1 +1,29 @@
-<p>reviews works!</p>
+<h1>Reviews</h1>
+
+<div *ngIf="!songId" class="noSongSelected">
+    <p>Welcome to <strong>Angular Sound Reviews</strong>!</p>
+    <p>Please select a song from the Songs page to view reviews.</p>
+</div>
+
+<div *ngIf="songId">
+    <p><strong>Title: </strong>{{song.title}}</p>
+    <p><strong>Artist: </strong>{{song.artist}}</p>
+    <p><strong>Album: </strong>{{song.album}}</p>
+    <p><strong>Year: </strong>{{song.year}}</p>
+
+    <br>
+
+    <p><strong>Number of Reviews: </strong>{{reviews.length}}</p>
+    <p><strong>Average Rating: </strong>{{averageRating}}</p>    
+
+    <br><br>
+
+    <ul *ngIf="reviews">
+        <li *ngFor="let review of reviews">
+            <p><strong>Rating: </strong>{{review.rating}} / 5</p>
+            <p><strong>Review: </strong>"{{review.review}}"</p>
+            <p><strong>Reviewed By: </strong>{{review.user}}</p>
+        </li>   
+    </ul>
+
+</div>

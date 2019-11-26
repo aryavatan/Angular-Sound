@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-songs',
@@ -15,10 +16,16 @@ export class SongsComponent implements OnInit {
 	// Databinded Variables
 	searchKey: String;
 
-	constructor(private http: HttpService) { }
+	constructor(private http: HttpService, private router: Router) { }
 
 	ngOnInit() {
 		this.getSongs();
+	}
+
+	SongClicked(liNode){
+		localStorage.setItem('songId', liNode._id);
+		this.router.navigate(['/reviews']);
+		console.log(liNode);
 	}
 
 	getSongs() {

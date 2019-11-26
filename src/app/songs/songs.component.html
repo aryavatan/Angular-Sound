@@ -8,7 +8,7 @@
 
 <div class="songs">
     <ul *ngIf="songs">
-        <li *ngFor="let song of songs">
+        <li *ngFor="let song of songs" (click)="SongClicked(song)">
             <p><strong>Title: </strong>{{song.title}}</p>
             <p><strong>Artist: </strong>{{song.artist}}</p>
             <p><strong>Album: </strong>{{song.album}}</p>

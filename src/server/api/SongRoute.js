@@ -10,6 +10,14 @@ router.get('/', (req, res) => {
     .then(items => res.json(items));
 });
 
+// '/api/songs/:songId' - GET - Get Song from ID
+router.get('/:songId', (req, res) => {
+    let songId = req.params.songId;
+    console.log("Incoming Request: Song query for song " + songId);
+    Song.findOne({_id: songId})
+    .then(items => res.json(items));
+});
+
 // '/api/songs' - POST - Create A New Song
 router.post('/', (req, res) => {
     const newSong = new Song({
