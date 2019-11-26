@@ -12,8 +12,8 @@
 <div>
     <h2>Your Review</h2>
     <form id="my_form" (submit)="PostReview(signupForm)" #signupForm="ngForm">
-        <strong>Rating: </strong>
-        <select style="display: inline;" name="rating" [(ngModel)]="rating">
+        <strong>Rating</strong><br>
+        <select  name="rating" [(ngModel)]="rating">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -23,7 +23,7 @@
 
         <br>
 
-        <p><Strong>Review: </Strong></p>
+        <p><Strong>Review</Strong></p>
         <textarea name="review" [(ngModel)]="review" required></textarea>
 
         <br>
