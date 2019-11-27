@@ -40,6 +40,12 @@ export class AdminComponent implements OnInit {
 	GrantAdminPrivilege(form){
 		let user = form.value.user;
 		console.log("Granting Admin Privilege for " + user + " ...");
+
+		this.http.makeUserAdmin(user).subscribe(data => {			
+			window.location.reload();
+			console.log(data);
+			console.log(user + " is now admin");
+		});
 	}
 
 }

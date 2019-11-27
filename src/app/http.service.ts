@@ -64,6 +64,13 @@ export class HttpService {
 		return this.http.get('http://localhost:8080/api/users');
 	}
 
+	makeUserAdmin(email){
+		let putData = {
+			email: email
+		};
+		return this.http.put('http://localhost:8080/api/admin', putData);
+	}
+
 	getAuthStatusListener(){
 		return this.authStatusListener.asObservable();
 	}

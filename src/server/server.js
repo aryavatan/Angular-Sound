@@ -9,6 +9,7 @@ const cors = require('cors')
 const UserRoutes = require('./api/UserRoute');
 const SongRoutes = require('./api/SongRoute');
 const ReviewRoutes = require('./api/ReviewRoute');
+const AdminRoutes = require('./api/AdminRoute');
 
 const app = express();
 
@@ -32,6 +33,7 @@ mongoose.connect(mongoURL, { useNewUrlParser: true ,  useUnifiedTopology: true }
 app.use('/api/users', UserRoutes);
 app.use('/api/songs', SongRoutes);
 app.use('/api/reviews', ReviewRoutes);
+app.use('/api/admin', AdminRoutes);
 
 
 // ======================================================================================
