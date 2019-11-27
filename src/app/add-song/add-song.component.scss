@@ -14,4 +14,12 @@ button:hover{
 
 input{
     margin-left: 2%;
+    width: 120px;
+}
+input:invalid {
+    border: 2px solid red;
+}
+
+form {
+    margin-left: 1%;
 }

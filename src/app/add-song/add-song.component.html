@@ -1,11 +1,11 @@
 <h1>Add a Song</h1>
 <form (submit)="PostSong(songForm)" #songForm="ngForm">
     <strong>Track Title: </strong>
-    <input type="text" name="title" [(ngModel)]="title">
+    <input type="text" name="title" [(ngModel)]="title" required>
     <br><br>
 
     <strong>Artist(s): </strong>
-    <input type="text" name="artist" [(ngModel)]="artist">
+    <input type="text" name="artist" [(ngModel)]="artist" required>
     <br><br>
 
     <strong>Album: </strong>

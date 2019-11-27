@@ -21,11 +21,11 @@ export class AddSongComponent implements OnInit {
 		let year = form.value.year;
 		
 		// Input validation
-		if(title === undefined || artist === undefined || album === undefined || year === undefined){
+		if(title === undefined || artist === undefined){
 			alert("Please enter all required fields");
 			return;
 		}
-		else if(year > 2019){
+		else if(year && year > 2019){
 			alert("Invalid input for the field 'year'");
 			return;
 		}
