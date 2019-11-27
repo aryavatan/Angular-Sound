@@ -1,1 +1,13 @@
 <h1>Site Maintenance</h1>
+
+<div class="grant-admin">
+    <br>
+    <h2>Grant Admin Privilege</h2>
+    <form (submit)="GrantAdminPrivilege(grantAdminForm)" #grantAdminForm="ngForm">
+        <strong>User: </strong>
+        <select name="user" [(ngModel)]="user">
+            <option *ngFor="let user of users" value="{{user.email}}">{{user.email}}</option>
+        </select>
+        <button type="submit">Make Admin</button>
+    </form>
+</div>

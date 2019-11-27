@@ -1,0 +1,13 @@
+$primary: rgb(59, 111, 255);
+
+h1 {
+    margin-top: 3%;
+}
+
+button{
+    margin-left: 2%;
+}
+button:hover{
+    background: $primary;
+    color: white;
+}
