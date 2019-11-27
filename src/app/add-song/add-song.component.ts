@@ -15,6 +15,7 @@ export class AddSongComponent implements OnInit {
 	}
 
 	PostSong(form) {
+		let review = form.value.review;
 		let title = form.value.title;
 		let artist = form.value.artist;
 		let album = form.value.album;
@@ -32,11 +33,23 @@ export class AddSongComponent implements OnInit {
 
 		this.http.postSong(title, artist, album, year).subscribe(data => {
 			console.log(data);
-		});
+			let song: any = data;
+			console.log(song._id);
 
-		this.router.navigate(['/songs']).then(() => {
-			window.location.reload();
+			if(review !== undefined && review == true){
+				localStorage.setItem('songId', song._id);
+				this.router.navigate(['/addreview']);
+				return;
+			}
+
 		});
+	
+		if(review === undefined || review == false){
+			this.router.navigate(['/songs']).then(() => {
+				window.location.reload();
+			});
+		}
+		
 	}
 
 }
