@@ -15,6 +15,7 @@ import { from } from 'rxjs';
 import { AuthenticationInterceptor } from 'src/server/authentication/Authentication-Interceptor';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddSongComponent } from './add-song/add-song.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddSongComponent } from './add-song/add-song.component';
     SongsComponent,
     AddReviewComponent,
     AddSongComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

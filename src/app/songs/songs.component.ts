@@ -28,10 +28,10 @@ export class SongsComponent implements OnInit {
 		this.getSongs();
 	}
 
-	SongClicked(liNode){
-		localStorage.setItem('songId', liNode._id);
+	SongClicked(song){
+		localStorage.setItem('songId', song._id);
 		this.router.navigate(['/reviews']);
-		console.log(liNode);
+		console.log(song);
 	}
 
 	getSongs() {
