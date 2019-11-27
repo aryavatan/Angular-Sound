@@ -10,16 +10,24 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
 	title = 'Angular-Sound';
 	userIsAuthenticated = false;
+	userIsAdmin = false;
 	private authListenerSubs: Subscription;
+	private adminListenerSubs: Subscription;
 
 	constructor(private http: HttpService) { }
 
 	ngOnInit() {
+		this.userIsAdmin = this.http.getIsAdmin();
 		this.userIsAuthenticated = this.http.getIsAuth();
-		this.authListenerSubs = this.http
-		.getAuthStatusListener()
+		
+		this.authListenerSubs = this.http.getAuthStatusListener()
 		.subscribe(isAuthenticated => {
 			this.userIsAuthenticated = isAuthenticated;
+		});
+
+		this.adminListenerSubs = this.http.getAdminStatusListener()
+		.subscribe(isAdmin => {
+			this.userIsAdmin = isAdmin;
 		});
 
 		this.http.autoAuthUser();

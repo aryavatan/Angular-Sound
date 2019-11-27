@@ -12,6 +12,8 @@ export class HttpService {
 	private token: String;
 	private authStatusListener = new Subject<boolean>();
 	private isAuthenticated = false;
+	private adminStatusListener = new Subject<boolean>();
+	private isAdmin = false;
 
 	constructor(private http: HttpClient, private router:Router) { }
 
@@ -66,8 +68,16 @@ export class HttpService {
 		return this.authStatusListener.asObservable();
 	}
 
+	getAdminStatusListener(){
+		return this.adminStatusListener.asObservable();
+	}
+
 	getIsAuth(){
 		return this.isAuthenticated;
+	}
+
+	getIsAdmin(){
+		return this.isAdmin;
 	}
 	
 	loginUser(email, password){
@@ -76,7 +86,7 @@ export class HttpService {
 			password: password
 		};
 		
-		return this.http.post<{token: String, error: String}>("http://localhost:8080/api/users/login", postData)
+		return this.http.post<{token: String, error: String, admin: boolean}>("http://localhost:8080/api/users/login", postData)
 		.subscribe(response => {
 			if(response.error == 'deactivated'){
 				console.log('User is deactivated');
@@ -84,10 +94,14 @@ export class HttpService {
 				alert("This account is marked as deactivated, please contact a site administrator.");	
 				return;
 			}
+			if(response.admin == true){
+				this.isAdmin = true
+				this.adminStatusListener.next(true);
+			}
 			this.token = response.token;
 			this.isAuthenticated = true;
 			this.authStatusListener.next(true);
-			this.saveAuthData(this.token, postData.email);
+			this.saveAuthData(this.token, postData.email, this.isAdmin);
 			this.router.navigate(['/']);
 		});
 	}
@@ -100,18 +114,22 @@ export class HttpService {
 		this.token = null;
 		this.isAuthenticated = false;
 		this.authStatusListener.next(false);
+		this.isAdmin = false;
+		this.adminStatusListener.next(false);
 		this.clearAuthData();
 		this.router.navigate(['/']);
 	}
 
-	private saveAuthData(token, user){
+	private saveAuthData(token, user, isAdmin){
 		localStorage.setItem('token', token);
 		localStorage.setItem('user', user);
+		localStorage.setItem('isAdmin', isAdmin);
 	}
 
 	private clearAuthData(){
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
+		localStorage.removeItem('isAdmin');
 	}
 
 	private getAuthData(){
@@ -119,7 +137,8 @@ export class HttpService {
 		if(!token){
 			return;
 		}
-		return {token: token}
+		const isAdmin = localStorage.getItem('isAdmin');
+		return {token: token, isAdmin: isAdmin};
 	}
 
 	autoAuthUser(){
@@ -127,6 +146,9 @@ export class HttpService {
 		this.token = authInfo.token;
 		this.isAuthenticated = true;
 		this.authStatusListener.next(true);
+
+		this.isAdmin = authInfo.isAdmin == 'true' ? true : false;
+		this.adminStatusListener.next(this.isAdmin);
 	}
 
 }

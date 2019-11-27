@@ -7,6 +7,8 @@ import { SongsComponent } from './songs/songs.component';
 import { AuthenticationGuard } from 'src/server/authentication/Authentication-Guard';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddSongComponent } from './add-song/add-song.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminAuthenticationGuard } from 'src/server/authentication/Admin-Authentication-Guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,12 +16,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'songs', component: SongsComponent},
   { path: 'addreview', component: AddReviewComponent, canActivate: [AuthenticationGuard]},
-  { path: 'addsong', component: AddSongComponent, canActivate: [AuthenticationGuard]}
+  { path: 'addsong', component: AddSongComponent, canActivate: [AuthenticationGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AdminAuthenticationGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthenticationGuard] 
+  providers: [AuthenticationGuard, AdminAuthenticationGuard] 
 })
 export class AppRoutingModule { }

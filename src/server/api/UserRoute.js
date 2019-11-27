@@ -81,8 +81,15 @@ router.post('/login', (req, res) => {
             { expiresIn: "1h"}
         );
 
+        // Check if user is an administrator
+        let admin = false;
+        if(fetchedUser.status == 'admin'){
+            admin = true;
+        }
+
         res.status(200).json({
-            token: token
+            token: token,
+            admin: admin
         });
     })
     .catch(err => {
