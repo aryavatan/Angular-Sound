@@ -24,7 +24,9 @@ router.post('/', (req, res) => {
         title: req.body.title,
         artist: req.body.artist,
         album: req.body.album,
-        year: req.body.year
+        year: req.body.year,
+        track: req.body.track,
+        genre: req.body.genre
     });
 
     newSong.save().then(item => res.json(item));

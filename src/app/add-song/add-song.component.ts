@@ -15,11 +15,14 @@ export class AddSongComponent implements OnInit {
 	}
 
 	PostSong(form) {
+		console.log(form.value);
 		let review = form.value.review;
 		let title = form.value.title;
 		let artist = form.value.artist;
 		let album = form.value.album;
 		let year = form.value.year;
+		let track = form.value.track;
+		let genre = form.value.genre;
 		
 		// Input validation
 		if(title === undefined || artist === undefined){
@@ -31,7 +34,7 @@ export class AddSongComponent implements OnInit {
 			return;
 		}
 
-		this.http.postSong(title, artist, album, year).subscribe(data => {
+		this.http.postSong(title, artist, album, year, track, genre).subscribe(data => {
 			console.log(data);
 			let song: any = data;
 			console.log(song._id);

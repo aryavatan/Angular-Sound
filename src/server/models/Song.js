@@ -6,7 +6,9 @@ const SongSchema = new Schema({
     title: String,
     artist: String,
     album: String,
-    year: String
+    year: String,
+    track: String,
+    genre: String
 });
 
 // Create Model

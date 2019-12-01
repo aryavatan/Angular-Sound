@@ -41,12 +41,14 @@ export class HttpService {
 		return this.http.post(this.domain + '/reviews', postData);
 	}
 
-	postSong(title, artist, album, year){
+	postSong(title, artist, album, year, track, genre){
 		let postData = {
 			title: title,
 			artist: artist,
 			album: album,
-			year: year
+			year: year,
+			track: track,
+			genre: genre
 		};
 
 		return this.http.post(this.domain + '/songs', postData);
