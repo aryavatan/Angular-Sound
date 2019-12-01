@@ -19,25 +19,28 @@ export class AppComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.userIsAdmin = this.http.getIsAdmin();
 		this.userIsAuthenticated = this.http.getIsAuth();
-		
+
 		this.authListenerSubs = this.http.getAuthStatusListener()
-		.subscribe(isAuthenticated => {
-			this.userIsAuthenticated = isAuthenticated;
-		});
+			.subscribe(isAuthenticated => {
+				this.userIsAuthenticated = isAuthenticated;
+			});
 
 		this.adminListenerSubs = this.http.getAdminStatusListener()
-		.subscribe(isAdmin => {
-			this.userIsAdmin = isAdmin;
-		});
+			.subscribe(isAdmin => {
+				this.userIsAdmin = isAdmin;
+			});
 
 		this.http.autoAuthUser();
 	}
 
-	ngOnDestroy(){
-
+	ngOnDestroy() {
+		localStorage.removeItem('songId');
+		localStorage.removeItem('user');
+		localStorage.removeItem('isAdmin');
+		localStorage.removeItem('token');
 	}
 
-	Logout(){
+	Logout() {
 		this.http.Logout();
 	}
 
