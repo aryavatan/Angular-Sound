@@ -9,6 +9,7 @@ import { AddReviewComponent } from './add-review/add-review.component';
 import { AddSongComponent } from './add-song/add-song.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminAuthenticationGuard } from 'src/server/authentication/Admin-Authentication-Guard';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'songs', component: SongsComponent},
   { path: 'addreview', component: AddReviewComponent, canActivate: [AuthenticationGuard]},
   { path: 'addsong', component: AddSongComponent, canActivate: [AuthenticationGuard]},
-  { path: 'admin', component: AdminComponent, canActivate: [AdminAuthenticationGuard]}
+  { path: 'admin', component: AdminComponent, canActivate: [AdminAuthenticationGuard]},
+  { path: 'privacy', component: PrivacyPolicyComponent}
 ];
 
 @NgModule({

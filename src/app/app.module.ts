@@ -16,6 +16,7 @@ import { AuthenticationInterceptor } from 'src/server/authentication/Authenticat
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddSongComponent } from './add-song/add-song.component';
 import { AdminComponent } from './admin/admin.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
     AddReviewComponent,
     AddSongComponent,
     AdminComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,
