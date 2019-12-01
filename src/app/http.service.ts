@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HttpService {
 
+	private domain = 'http://localhost:8080/api';
 	private token: String;
 	private authStatusListener = new Subject<boolean>();
 	private isAuthenticated = false;
@@ -18,15 +19,15 @@ export class HttpService {
 	constructor(private http: HttpClient, private router:Router) { }
 
 	getAllSongs(){
-		return this.http.get('http://localhost:8080/api/songs');
+		return this.http.get(this.domain + '/songs');
 	}
 
 	getSong(songId){
-		return this.http.get('http://localhost:8080/api/songs/' + songId);
+		return this.http.get(this.domain + '/songs/' + songId);
 	}
 
 	getReviewsForSong(songId){
-		return this.http.get('http://localhost:8080/api/reviews/' + songId);
+		return this.http.get(this.domain + '/reviews/' + songId);
 	}
 
 	postReview(songId, user, rating, review){
@@ -37,7 +38,7 @@ export class HttpService {
 			review: review
 		};
 
-		return this.http.post('http://localhost:8080/api/reviews', postData);
+		return this.http.post(this.domain + '/reviews', postData);
 	}
 
 	postSong(title, artist, album, year){
@@ -48,7 +49,7 @@ export class HttpService {
 			year: year
 		};
 
-		return this.http.post('http://localhost:8080/api/songs', postData);
+		return this.http.post(this.domain + '/songs', postData);
 	}
 
 	postUser(email, password){
@@ -57,18 +58,18 @@ export class HttpService {
 			password: password
 		}
 
-		return this.http.post('http://localhost:8080/api/users', postData);
+		return this.http.post(this.domain + '/users', postData);
 	}
 	
 	getAllUsers() {
-		return this.http.get('http://localhost:8080/api/users');
+		return this.http.get(this.domain + '/users');
 	}
 
 	makeUserAdmin(email){
 		let putData = {
 			email: email
 		};
-		return this.http.put('http://localhost:8080/api/admin', putData);
+		return this.http.put(this.domain + '/admin', putData);
 	}
 
 	getAuthStatusListener(){
@@ -93,7 +94,7 @@ export class HttpService {
 			password: password
 		};
 		
-		return this.http.post<{token: String, error: String, admin: boolean}>("http://localhost:8080/api/users/login", postData)
+		return this.http.post<{token: String, error: String, admin: boolean}>(this.domain + "/users/login", postData)
 		.subscribe(response => {
 			if(response.error == 'deactivated'){
 				console.log('User is deactivated');
