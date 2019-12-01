@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
         
         newUser.save().then(item => res.json(item))
         .catch(err => {
-            res.status(500).json({error: err});
+            res.status(200).json({error: "User already exists"});
         });
 
     })
@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
 
     // Validate email
     if(!validateEmail(req.body.email)){
-        return res.status(400).json({message: "Invalid Email"});
+        return res.status(400).json({error: "Invalid Email"});
     }
 
     // Check for email address in db
@@ -52,8 +52,8 @@ router.post('/login', (req, res) => {
 
         // If user not found, return 401
         if(!user){
-            return res.status(401).json({
-                message: 'User Authentication Failed'
+            return res.status(200).json({
+                error: 'User Authentication Failed'
             });
         }
 
@@ -70,8 +70,8 @@ router.post('/login', (req, res) => {
     .then(result => {
         console.log("Password Check Result: " + result);
         if(result == false){
-            return res.status(401).json({
-                message: 'User Authentication Failed'
+            return res.status(200).json({
+                error: 'User Authentication Failed'
             });
         }
 

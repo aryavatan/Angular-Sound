@@ -102,9 +102,17 @@ export class HttpService {
 				alert("This account is marked as deactivated, please contact a site administrator.");	
 				return;
 			}
+			else if (response.error == "User Authentication Failed"){
+				alert('Login Failed');
+				return;
+			}
 			if(response.admin == true){
 				this.isAdmin = true
 				this.adminStatusListener.next(true);
+			}
+			if(response.token === null){
+				alert("Login Failed");
+				return;
 			}
 			this.token = response.token;
 			this.isAuthenticated = true;

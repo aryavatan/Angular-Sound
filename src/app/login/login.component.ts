@@ -67,6 +67,10 @@ export class LoginComponent implements OnInit {
 		}
 
 		this.http.postUser(email, pass1).subscribe(data => {
+			if(data.hasOwnProperty('error')){
+				alert("User already exists");
+				return;
+			}
 			console.log('User Saved');
 			console.log(data);
 			this.http.loginUser(email, pass1);
