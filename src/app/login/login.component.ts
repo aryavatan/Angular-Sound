@@ -19,12 +19,21 @@ export class LoginComponent implements OnInit {
 	}
 
 	Login(form: NgForm) {
-		if (form.invalid) {
-			return;
-		}
-
 		let email = form.value.email;
 		let password = form.value.password;
+
+		if(email == ""){
+			alert('Enter an email');
+			return
+		}
+		else if(password == ""){
+			alert('Enter a password');
+			return
+		}
+		if (form.invalid) {
+			alert("Please enter a valid email");
+			return;
+		}
 
 		// Additional email validation
 		if(!this.validateEmail(email)){
