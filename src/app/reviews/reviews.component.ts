@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class ReviewsComponent implements OnInit {
 
 	songId: String;  // Storing the song ID value
-	reviews: Object;  // Storing review objects for song
+	reviews: Object = [];  // Storing review objects for song
 	song: Object;  // Storing the song object 
 	averageRating: number = 0;  // Storing the average rating of the song
 

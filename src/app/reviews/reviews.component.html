@@ -26,10 +26,10 @@
     <br><br>
 
     <ul *ngIf="reviews">
-        <li *ngFor="let review of reviews">
-            <p><strong>Rating: </strong>{{review.rating}} / 5</p>
-            <p><strong>Review: </strong>"{{review.review}}"</p>
-            <p><strong>Reviewed By: </strong>{{review.user}}</p>
+        <li *ngFor="let review of reviews; let i=index;">
+            <p><strong>Rating: </strong>{{reviews[reviews.length - 1 - i].rating}} / 5</p>
+            <p><strong>Review: </strong>"{{reviews[reviews.length - 1 - i].review}}"</p>
+            <p><strong>Reviewed By: </strong>{{reviews[reviews.length - 1 - i].user}}</p>
         </li>   
     </ul>
 
