@@ -11,6 +11,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminAuthenticationGuard } from 'src/server/authentication/Admin-Authentication-Guard';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TakedownPolicyComponent } from './takedown-policy/takedown-policy.component';
+import { TakedownProcedureComponent } from './takedown-procedure/takedown-procedure.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'addsong', component: AddSongComponent, canActivate: [AuthenticationGuard]},
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthenticationGuard]},
   { path: 'privacy', component: PrivacyPolicyComponent},
-  { path: 'takedown', component: TakedownPolicyComponent}
+  { path: 'takedown', component: TakedownPolicyComponent},
+  { path: 'takedown/procedure', component: TakedownProcedureComponent, canActivate:[AdminAuthenticationGuard]}
 ];
 
 @NgModule({

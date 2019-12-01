@@ -18,6 +18,7 @@ import { AddSongComponent } from './add-song/add-song.component';
 import { AdminComponent } from './admin/admin.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { TakedownPolicyComponent } from './takedown-policy/takedown-policy.component';
+import { TakedownProcedureComponent } from './takedown-procedure/takedown-procedure.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TakedownPolicyComponent } from './takedown-policy/takedown-policy.compo
     AdminComponent,
     PrivacyPolicyComponent,
     TakedownPolicyComponent,
+    TakedownProcedureComponent,
   ],
   imports: [
     BrowserModule,
